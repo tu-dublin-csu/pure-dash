@@ -9,6 +9,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Add dotenv for environment variables
+require('dotenv').config();
+
+console.log('process.env.FOOBAR:', process.env.FOOBAR);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
