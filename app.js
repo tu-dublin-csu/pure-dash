@@ -12,7 +12,7 @@ var app = express();
 // Add dotenv for environment variables
 require('dotenv').config();
 
-console.log('process.env.FOOBAR:', process.env.FOOBAR);
+console.log('process.env.PURE_URL:', process.env.PURE_URL);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

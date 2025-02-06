@@ -16,7 +16,6 @@
 			"dbaeumer.vscode-eslint",
 			"esbenp.prettier-vscode",
 			"ms-azuretools.vscode-azureappservice",
-			"ms-azuretools.vscode-azure-github-copilot",
 			"GitHub.vscode-pull-request-github",
 			"GitHub.vscode-github-actions"
 		],
