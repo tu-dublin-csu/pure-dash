@@ -1,21 +1,26 @@
 {
-	"name": "<replace-with-your-project-name>",
-    "_comment": "See https://aka.ms/vscode-remote/devcontainer.json for more information.",
-    "_comment": "Use 'image' to specify the docker image. Update the version tag as needed (here '22')",
+	"name": "pure-dash",
+    // "_comment": "See https://aka.ms/vscode-remote/devcontainer.json for more information.",
+    // "_comment": "Use 'image' to specify the docker image. Update the version tag as needed (here '22')",
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22",
 	"features": {
 	  "ghcr.io/devcontainers/features/node:1": {
 		"version": "22"
-	  }
+	  },
+	  "ghcr.io/devcontainers/features/github-cli:1": {}
 	},
 	"postCreateCommand": "npm install",
 	"customizations": {
 	  "vscode": {
 		"extensions": [
-		  "dbaeumer.vscode-eslint",
-		  "esbenp.prettier-vscode"
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"ms-azuretools.vscode-azureappservice",
+			"ms-azuretools.vscode-azure-github-copilot",
+			"GitHub.vscode-pull-request-github",
+			"GitHub.vscode-github-actions"
 		],
-        "_comment": "Add other extensions as needed",
+        // "_comment": "Add other extensions as needed",
 		"settings": {
 		  "terminal.integrated.defaultProfile.linux": "zsh",
 		  "terminal.integrated.profiles.linux": { "zsh": { "path": "/usr/bin/zsh" } }
@@ -26,13 +31,13 @@
 		}
 	  }
 	},
-    "_comment": "Add the --env-file to 'runArgs' to load secrets and other environment variables from a devcontainer.env file",
+    // "_comment": "Add the --env-file to 'runArgs' to load secrets and other environment variables from a devcontainer.env file",
 	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
-	"_comment": "Before (re)building the container, create the following directory and file inside your local home directory",
-	"_comment": "this will persist ZSH command history over sessions",
-	"_comment": "mkdir .vscode-zsh-hists",
-	"_comment": "touch .vscode-zsh-hists/peoplexd_client.zsh_history",
-    "_comment": "Add other mounts as needed e.g. .npmrc, .ssh, etc.",
+	// "_comment": "Before (re)building the container, create the following directory and file inside your local home directory",
+	// "_comment": "this will persist ZSH command history over sessions",
+	// "_comment": "mkdir .vscode-zsh-hists",
+	// "_comment": "touch .vscode-zsh-hists/peoplexd_client.zsh_history",
+    // "_comment": "Add other mounts as needed e.g. .npmrc, .ssh, etc.",
 	"mounts": ["source=${env:HOME}${env:USERPROFILE}/.vscode-zsh-hists/peoplexd_client.zsh_history,target=/home/node/.zsh_history,type=bind"]
   }
   
