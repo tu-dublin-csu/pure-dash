@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var { Pool } = require('pg'); // Add pg
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -13,6 +14,26 @@ var app = express();
 require('dotenv').config();
 
 console.log('process.env.PURE_URL:', process.env.PURE_URL);
+console.log('process.env.DATABASE_URL:', process.env.DATABASE_URL);
+
+// Create a new pool instance
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+// Test the database connection
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error('Error acquiring client', err.stack);
+  }
+  client.query('SELECT NOW()', (err, result) => {
+    release();
+    if (err) {
+      return console.error('Error executing query', err.stack);
+    }
+    console.log('Database connected:', result.rows);
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

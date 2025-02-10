@@ -2,7 +2,14 @@
 	"name": "pure-dash",
     // See https://aka.ms/vscode-remote/devcontainer.json for more information.
     // Use 'image' to specify the docker image. Update the version tag as needed (here '22')
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22",
+	// "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "app",
+	"workspaceFolder": "/workspace",
 	"features": {
 	  "ghcr.io/devcontainers/features/node:1": {
 		"version": "22"
@@ -17,7 +24,9 @@
 			"esbenp.prettier-vscode",
 			"ms-azuretools.vscode-azureappservice",
 			"GitHub.vscode-pull-request-github",
-			"GitHub.vscode-github-actions"
+			"GitHub.vscode-github-actions",
+			"ms-azuretools.vscode-cosmosdb",
+			"ms-azuretools.vscode-docker"
 		],
         // Add other extensions as needed
 		"settings": {
@@ -30,8 +39,14 @@
 		}
 	  }
 	},
-    // Add the --env-file to 'runArgs' to load secrets and other environment variables from a devcontainer.env file
-	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
+	"runServices": [
+		"database",
+		"app"
+	],
+	// "forwardPorts": [
+	// 	3000,
+	// 	5432
+	// ],
 	// Before (re)building the container, create the following directory and file inside your local home directory
 	// this will persist ZSH command history over sessions
 	// mkdir .vscode-zsh-hists
