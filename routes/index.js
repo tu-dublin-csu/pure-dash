@@ -11,16 +11,12 @@ router.get('/', function(req, res, next) {
   if (req.headers['x-ms-client-principal']) {
     const buff = Buffer.from(req.headers['x-ms-client-principal'], 'base64');
     const text = buff.toString('ascii');
-    xmscp = JSON.stringify(JSON.parse(text), null, 2)
+    xmscp = JSON.parse(text);
     //pretty print the decoded string
-    console.log('Request Header x-ms-client-principal:\n\n', xmscp);
-    const issClaim = JSON.parse(text).claims.find(claim => claim.typ === 'iss');
-    if (issClaim) {
-      user_fullname = issClaim.val;
-    }
-    
+    console.log('Request Header x-ms-client-principal:\n\n', JSON.stringify(xmscp, null, 2));
+    user_fullname = xmscp.claims.find(claim => claim.typ === 'name').val
   }
-  res.render('index', { title: 'PURE Dashboard', pure_url: process.env.PURE_URL, user_fullnam: user_fullname });
+  res.render('index', { title: 'PURE Dashboard', pure_url: process.env.PURE_URL, user_fullname: user_fullname });
 });
 
 module.exports = router;
