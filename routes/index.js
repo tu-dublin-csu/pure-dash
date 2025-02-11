@@ -1,5 +1,4 @@
 var express = require('express');
-const { request } = require('../app');
 var router = express.Router();
 
 
@@ -10,9 +9,9 @@ router.get('/', function(req, res, next) {
   if (req.headers['x-ms-client-principal']) {
     const buff = Buffer.from(req.headers['x-ms-client-principal'], 'base64');
     const text = buff.toString('ascii');
-    const xmscp = JSON.stringify(JSON.parse(text), null, 2)
+    xmscp = JSON.stringify(JSON.parse(text), null, 2)
     //pretty print the decoded string
-    console.log('Request Header x-ms-client-principal:', xmscp);
+    console.log('Request Header x-ms-client-principal:\n\n', xmscp);
   }
   res.render('index', { title: 'PURE Dashboard', pure_url: process.env.PURE_URL, xmscp: xmscp });
 });
