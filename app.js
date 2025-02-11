@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { Pool } = require('pg'); // Add pg
+var { PureClient } = require('pure-client'); // Add pure-client
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
