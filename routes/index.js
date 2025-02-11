@@ -5,6 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var xmscp = null;
   // Log the request header x-ms-client-principal and deserialise from base64
   if (req.headers['x-ms-client-principal']) {
     const buff = Buffer.from(req.headers['x-ms-client-principal'], 'base64');
