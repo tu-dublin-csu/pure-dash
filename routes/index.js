@@ -9,11 +9,11 @@ router.get('/', function(req, res, next) {
   if (req.headers['x-ms-client-principal']) {
     const buff = Buffer.from(req.headers['x-ms-client-principal'], 'base64');
     const text = buff.toString('ascii');
-    console.log('Request Header x-ms-client-principal:', text);
+    const xmscp = JSON.stringify(JSON.parse(text), null, 2)
+    //pretty print the decoded string
+    console.log('Request Header x-ms-client-principal:', xmscp);
   }
-  console.log('Request Header x-ms-client-principal:', req.headers['x-ms-client-principal']);
-  // console.log('Request Headers:', req.headers);
-  res.render('index', { title: 'PURE Dashboard', pure_url: process.env.PURE_URL });
+  res.render('index', { title: 'PURE Dashboard', pure_url: process.env.PURE_URL, xmscp: xmscp });
 });
 
 module.exports = router;
