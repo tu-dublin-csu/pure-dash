@@ -43,10 +43,6 @@
 		"database",
 		"app"
 	],
-	// "forwardPorts": [
-	// 	3000,
-	// 	5432
-	// ],
 	// Before (re)building the container, create the following directory and file inside your local home directory
 	// this will persist ZSH command history over sessions
 	// mkdir .vscode-zsh-hists
