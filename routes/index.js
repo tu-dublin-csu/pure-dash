@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     xmscp = JSON.stringify(JSON.parse(text), null, 2)
     //pretty print the decoded string
     console.log('Request Header x-ms-client-principal:\n\n', xmscp);
-    const issClaim = xmscp.claims.find(claim => claim.typ === 'iss');
+    const issClaim = JSON.parse(text).claims.find(claim => claim.typ === 'iss');
     if (issClaim) {
       user_fullname = issClaim.val;
     }
