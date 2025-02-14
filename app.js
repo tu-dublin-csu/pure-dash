@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { Pool } = require('pg'); // Add pg
-var { PureClient } = require('pure-client'); // Add pure-client
+var { PureClient } = require('pure-client');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,7 +16,7 @@ require('dotenv').config();
 
 console.log('process.env.PURE_URL:', process.env.PURE_URL);
 console.log('process.env.DATABASE_URL:', process.env.DATABASE_URL);
-
+console.log('process.env.PURE_API_URL:', process.env.PURE_API_URL);
 // Create a new pool instance
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -34,6 +34,15 @@ pool.connect((err, client, release) => {
     }
     console.log('Database connected:', result.rows);
   });
+});
+
+// Connection to Pure
+const pureClient = new PureClient(process.env.PURE_API_URL, process.env.PURE_API_KEY);
+
+// Test the Pure connection
+pureClient.get('/persons?size=1').then((data) => {
+  console.log('Pure connected: ');
+  console.log(data.items);
 });
 
 // view engine setup
